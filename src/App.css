@@ -1,0 +1,128 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  padding-bottom: 60px;
+}
+
+/* Footer styling */
+.main-footer {
+  width: 95%;
+  max-width: 1280px;
+  margin: 60px auto 20px auto;
+  padding: 32px 40px;
+  border-radius: 20px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-logo-icon {
+  color: var(--accent-purple);
+}
+
+.footer-mission {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-card);
+  margin-bottom: 24px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 12px;
+}
+
+/* Custom fade keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Global transitions classes */
+.page-enter {
+  opacity: 0;
+  transform: translateY(15px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Responsiveness to prevent any overlaps */
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 24px 20px;
+  }
+  
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .footer-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

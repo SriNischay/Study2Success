@@ -1,0 +1,328 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  overflow: visible;
+}
+
+/* Glow Backgrounds (Disabled for clean, simple professional look) */
+.bg-glow-purple, .bg-glow-cyan {
+  display: none;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.sparkle-icon {
+  color: var(--accent-cyan);
+}
+
+/* Title & Sub */
+.hero-title {
+  font-size: 3rem;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.ap-highlight-text {
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+/* Search Bar */
+.search-container {
+  width: 100%;
+  max-width: 650px;
+  position: relative;
+  border-radius: 18px;
+  padding: 4px;
+  margin-bottom: 48px;
+  z-index: 10;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+}
+
+.search-icon {
+  color: var(--text-secondary);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.search-container input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.search-container input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Dropdown Results */
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--border-card);
+  max-height: 380px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.search-result-item {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-card);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.result-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.result-type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+
+.result-tag {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--border-card);
+  color: var(--text-secondary);
+}
+
+.result-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.result-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Metrics Grid */
+.hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 64px;
+}
+
+.metric-card {
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  text-align: left;
+}
+
+.metric-icon {
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.metric-icon.purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--accent-purple);
+}
+
+.metric-icon.cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--accent-cyan);
+}
+
+.metric-icon.orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: var(--accent-orange);
+}
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Quick Nav Section */
+.quick-nav-section {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  margin-bottom: 32px;
+  text-align: center;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+  border-radius: 2px;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.quick-card {
+  padding: 24px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-header-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.bg-purple { background: linear-gradient(135deg, #a78bfa, #8b5cf6); }
+.bg-orange { background: linear-gradient(135deg, #fed7aa, #ea580c); }
+.bg-cyan { background: linear-gradient(135deg, #a5f3fc, #0891b2); }
+.bg-pink { background: linear-gradient(135deg, #fbcfe8, #db2777); }
+
+.quick-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.quick-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-purple);
+  margin-top: auto;
+  transition: transform var(--transition-fast);
+}
+
+.card-link.orange-text { color: var(--accent-orange); }
+.card-link.cyan-text { color: var(--accent-cyan); }
+.card-link.pink-text { color: var(--accent-pink); }
+
+.quick-card:hover .card-link {
+  transform: translateX(4px);
+}
+
+.nav-card-ap {
+  border: 1px solid rgba(249, 115, 22, 0.15);
+}
+
+.nav-card-ap:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-description {
+    font-size: 0.95rem;
+  }
+}

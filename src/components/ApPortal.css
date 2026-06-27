@@ -1,0 +1,1027 @@
+.ap-portal-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* Hero Header */
+.ap-portal-hero {
+  padding: 48px;
+  text-align: center;
+  border-radius: 24px;
+  margin-bottom: 40px;
+  border: 1px solid rgba(249, 115, 22, 0.15);
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.05) 0%, transparent 60%);
+}
+
+.ap-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.ap-title {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.orange-gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ap-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Layout Grid */
+.ap-content-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  margin-bottom: 56px;
+}
+
+.ap-section {
+  margin-bottom: 40px;
+}
+
+.ap-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.section-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.section-icon.orange { color: var(--accent-orange); }
+.section-icon.cyan { color: var(--accent-cyan); }
+.section-icon.purple { color: var(--accent-purple); }
+.section-icon.pink { color: var(--accent-pink); }
+
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+/* Schemes styles */
+.schemes-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scheme-card {
+  padding: 24px;
+  border-left: 4px solid var(--accent-orange);
+  transition: all var(--transition-normal);
+}
+
+.scheme-card:hover {
+  transform: translateX(4px);
+  border-left-color: var(--accent-pink);
+}
+
+.scheme-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.scheme-header h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.scheme-type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(249, 115, 22, 0.15);
+  color: var(--accent-orange);
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.scheme-benefits {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.eligibility-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.info-icon {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Quotas styles */
+.quotas-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.quota-row {
+  padding: 20px;
+  border-left: 4px solid var(--accent-pink);
+  transition: all var(--transition-normal);
+}
+
+.quota-row:hover {
+  transform: translateX(4px);
+  border-left-color: var(--accent-purple);
+}
+
+.quota-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quota-header h4 {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.quota-share {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(236, 72, 153, 0.15);
+  color: var(--accent-pink);
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.quota-details, .quota-benefits-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.quota-details strong, .quota-benefits-text strong {
+  color: var(--text-primary);
+}
+
+/* Zones styles */
+.zones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.zone-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.zone-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--accent-cyan);
+}
+
+.zone-districts {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.zone-quota-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(6, 182, 212, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  margin-top: auto;
+}
+
+/* Right Panel Checklist */
+.sticky-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.counseling-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.checklist-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  align-items: flex-start;
+}
+
+.checklist-marker {
+  margin-top: 2px;
+}
+
+.check-icon-active {
+  color: var(--accent-purple);
+}
+
+.checklist-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.checklist-info p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.counseling-tip {
+  padding: 16px;
+  border: 1px dashed rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.03);
+}
+
+.tip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.tip-icon {
+  color: var(--accent-purple);
+}
+
+.counseling-tip p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* College Directory section */
+.college-directory-section {
+  border-top: 1px solid var(--border-card);
+  padding-top: 48px;
+}
+
+.college-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.college-filter-tabs {
+  display: flex;
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-card);
+}
+
+/* College Card styles */
+.college-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.college-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.college-type-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.college-rating {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-pink);
+  background: rgba(236, 72, 153, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.college-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.college-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.college-location svg {
+  color: var(--text-muted);
+}
+
+.college-popular {
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .ap-content-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .sticky-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .ap-title {
+    font-size: 2.1rem;
+  }
+  
+  .zones-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .college-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .college-filter-tabs {
+    width: 100%;
+  }
+  
+  .filter-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 8px;
+  }
+}
+
+/* AP Segment Tabs */
+.ap-segment-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 6px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 0 auto 36px auto;
+  flex-wrap: wrap;
+}
+
+.segment-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex: 1 1 200px;
+  justify-content: center;
+}
+
+.segment-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.segment-btn.active {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-main);
+}
+
+/* College & Scholarship Matcher Grid */
+.tab-matcher {
+  margin-top: 10px;
+  animation: fadeIn 0.4s ease;
+}
+
+.matcher-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.matcher-form {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.form-header h3 {
+  font-size: 1.25rem;
+}
+
+.form-icon.purple {
+  color: var(--accent-purple);
+}
+
+.form-intro-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-label-with-val {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.slider-value {
+  color: var(--accent-purple);
+}
+
+.marks-slider {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-secondary);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--accent-purple);
+}
+
+.slider-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.select-full {
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* Matcher outputs on right */
+.matcher-results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result-block-rank {
+  padding: 24px;
+  text-align: center;
+}
+
+.rank-title-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sparkle-icon {
+  color: var(--accent-orange);
+}
+
+.rank-value-display {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--accent-orange);
+  margin: 10px 0;
+  letter-spacing: -0.02em;
+}
+
+.rank-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.result-block-scheme {
+  padding: 24px;
+  border-left: 4px solid transparent;
+}
+
+.result-block-scheme.status-eligible {
+  border-left-color: var(--accent-green);
+  background: rgba(5, 150, 105, 0.03);
+}
+
+.result-block-scheme.status-ineligible {
+  border-left-color: var(--accent-orange);
+  background: rgba(234, 88, 12, 0.03);
+}
+
+.scheme-status-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.status-eligible .scheme-status-header { color: var(--accent-green); }
+.status-ineligible .scheme-status-header { color: var(--accent-orange); }
+
+.scheme-status-header h4 {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.eligible-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perk-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.perk-check {
+  color: var(--accent-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ineligible-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.ineligible-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.result-block-colleges {
+  padding: 24px;
+}
+
+.result-block-colleges h4 {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 8px;
+}
+
+.colleges-matcher-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.match-college-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.match-col-info h5 {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.match-col-info span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.match-chance-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.chance-high {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--accent-green);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.chance-med {
+  background: rgba(234, 88, 12, 0.1);
+  color: var(--accent-orange);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.chance-low {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border-card);
+}
+
+/* Matcher Responsiveness */
+@media (max-width: 900px) {
+  .matcher-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .matcher-form {
+    padding: 20px 16px;
+  }
+  
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .ap-segment-tabs {
+    width: 100%;
+  }
+  
+  .segment-btn {
+    flex: 1;
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+}
+
+/* Exam Toggle Selection Buttons */
+.exam-toggle-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.exam-toggle-btn {
+  flex: 1 1 200px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.exam-toggle-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-card-hover);
+}
+
+.exam-toggle-btn.active {
+  background: var(--accent-purple);
+  color: white;
+  border-color: var(--accent-purple);
+  box-shadow: var(--shadow-main);
+}
+
+.no-matches-predictor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-card);
+  border-radius: 8px;
+  padding: 16px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* Expandable college details */
+.colleges-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.colleges-box-header h4 {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.expand-hint-lbl {
+  font-size: 0.75rem;
+  color: var(--accent-purple);
+  font-weight: 500;
+}
+
+.match-college-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+  margin-bottom: 10px;
+}
+
+.match-college-container:hover {
+  border-color: var(--border-card-hover);
+}
+
+.match-college-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.01);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  gap: 12px;
+}
+
+.match-college-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.match-college-row.expanded-header {
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--border-card);
+}
+
+.match-chance-row-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+}
+
+.match-college-details {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  border: none;
+  border-top: none;
+  animation: slideDown 0.25s ease-out;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.details-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.college-fees-breakdown {
+  border-top: 1px dashed var(--border-card);
+  padding-top: 16px;
+}
+
+.fees-section-title {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.fees-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.fee-card {
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 6px;
+}
+
+.quota-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.quota-fee-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--accent-purple);
+}
+
+.quota-fee-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .fees-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.show-all-col-btn {
+  background: transparent;
+  border: 1px solid var(--border-card);
+  color: var(--accent-purple);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.show-all-col-btn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent-purple);
+  color: var(--text-primary);
+}
