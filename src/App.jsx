@@ -7,10 +7,12 @@ import ApPortal from './components/ApPortal';
 import CareerQuiz from './components/CareerQuiz';
 import ExamTracker from './components/ExamTracker';
 import ParentGuide from './components/ParentGuide';
+import CinematicIntro from './components/CinematicIntro';
 import { Compass } from 'lucide-react';
 import './App.css';
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [searchQueryGlobal, setSearchQueryGlobal] = useState('');
   const [theme, setTheme] = useState('dark');
@@ -109,39 +111,54 @@ export default function App() {
   };
 
   return (
-    <div className="app-layout">
-      {/* Header Navigation */}
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} theme={theme} toggleTheme={toggleTheme} />
+    <>
+      <AnimatePresence>
+        {showIntro && (
+          <CinematicIntro key="intro" onComplete={() => setShowIntro(false)} />
+        )}
+      </AnimatePresence>
 
-      {/* Main Content Area with Transitions */}
-      <main className="main-content-wrapper">
-        <AnimatePresence mode="wait">
-          {renderTabContent()}
-        </AnimatePresence>
-      </main>
+      {!showIntro && (
+        <motion.div 
+          className="app-layout"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Header Navigation */}
+          <Header activeTab={activeTab} setActiveTab={setActiveTab} theme={theme} toggleTheme={toggleTheme} />
 
-      {/* Glassmorphic Footer */}
-      <footer className="main-footer glass-panel">
-        <div className="footer-top">
-          <div className="footer-logo">
-            <Compass size={22} className="footer-logo-icon" />
-            <span>Study2Success</span>
-          </div>
-          <p className="footer-mission">
-            Empowering Indian students with comprehensive academic direction, career path mappings, entrance exam indices, and dedicated financial scheme alerts for AP students.
-          </p>
-        </div>
-        
-        <div className="footer-divider" />
-        
-        <div className="footer-bottom">
-          <span className="copyright">&copy; 2026 Study2Success Career Guidance. All Rights Reserved.</span>
-          <div className="footer-links">
-            <span className="badge badge-ap">AP Region Active</span>
-            <span className="badge badge-national">National Index</span>
-          </div>
-        </div>
-      </footer>
-    </div>
+          {/* Main Content Area with Transitions */}
+          <main className="main-content-wrapper">
+            <AnimatePresence mode="wait">
+              {renderTabContent()}
+            </AnimatePresence>
+          </main>
+
+          {/* Glassmorphic Footer */}
+          <footer className="main-footer glass-panel">
+            <div className="footer-top">
+              <div className="footer-logo">
+                <Compass size={22} className="footer-logo-icon" />
+                <span>Study2Success</span>
+              </div>
+              <p className="footer-mission">
+                Empowering Indian students with comprehensive academic direction, career path mappings, entrance exam indices, and dedicated financial scheme alerts for AP students.
+              </p>
+            </div>
+            
+            <div className="footer-divider" />
+            
+            <div className="footer-bottom">
+              <span className="copyright">&copy; 2026 Study2Success Career Guidance. All Rights Reserved.</span>
+              <div className="footer-links">
+                <span className="badge badge-ap">AP Region Active</span>
+                <span className="badge badge-national">National Index</span>
+              </div>
+            </div>
+          </footer>
+        </motion.div>
+      )}
+    </>
   );
 }
