@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #060810;
+  background: #05060c;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   font-family: var(--font-heading);
 }
 
-/* Background Space & Grid Effects */
+/* Background grid effects */
 .intro-bg-effects {
   position: absolute;
   top: 0;
@@ -34,12 +34,12 @@
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
   background-size: 60px 60px;
   background-position: center;
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, transparent 65%);
-  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, transparent 65%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.85) 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.85) 0%, transparent 65%);
 }
 
 .space-star {
@@ -64,32 +64,55 @@
 /* Backlight Glow Behind Logo */
 .intro-backlight {
   position: absolute;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.16) 0%, rgba(6, 182, 212, 0.03) 45%, transparent 65%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.03) 45%, transparent 65%);
   z-index: 2;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.3;
   transform: scale(0.8);
   transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .intro-backlight.backlight-active {
   opacity: 1;
-  transform: scale(1.15);
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(6, 182, 212, 0.06) 50%, transparent 70%);
+  transform: scale(1.2);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.24) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%);
 }
 
-/* White flash overlay when final logo locks */
-.intro-flash-overlay {
+
+
+/* Shockwave expansion rings */
+.shockwave {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #ffffff;
-  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
   pointer-events: none;
+  z-index: 5;
+}
+
+.shockwave-1 {
+  border: 2px solid var(--accent-purple);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+  animation: shockwaveExpand 0.55s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+.shockwave-2 {
+  border: 3px solid var(--accent-cyan);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+  animation: shockwaveExpandLarge 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes shockwaveExpand {
+  0% { width: 0; height: 0; opacity: 1; }
+  100% { width: 500px; height: 500px; opacity: 0; }
+}
+
+@keyframes shockwaveExpandLarge {
+  0% { width: 0; height: 0; opacity: 1; }
+  100% { width: 900px; height: 900px; opacity: 0; }
 }
 
 /* Contents Wrapper */
@@ -104,7 +127,7 @@
 
 /* Icon above */
 .intro-icon-wrapper {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .intro-compass-icon {
@@ -119,88 +142,92 @@
   100% { transform: rotate(360deg); }
 }
 
-/* The Brand Composition Box (Spring dynamics) */
+/* The Brand Composition Box (Absolute physics grid) */
 .brand-composition-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 120px;
   position: relative;
-  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+  max-width: 800px;
+  height: 120px;
 }
 
 .brand-number-wrapper, .study-wrapper, .success-wrapper {
+  position: absolute;
+  top: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.25), opacity 0.35s ease-out;
+  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease-out, filter 0.4s ease-out;
 }
 
-/* STEP 0: Giant "2" in middle */
-.brand-composition-box.step-0 {
-  transform: translateX(0);
+/* Base layouts */
+.study-wrapper {
+  left: calc(50% - 170px);
 }
 
+.brand-number-wrapper {
+  left: 50%;
+}
+
+.success-wrapper {
+  left: calc(50% + 175px);
+}
+
+/* STEP 0: Giant "2" in middle, others offscreen */
 .brand-composition-box.step-0 .study-wrapper {
   opacity: 0;
-  transform: translateX(-350px);
-  position: absolute;
-  pointer-events: none;
+  transform: translate(-50%, -50%) translateX(-400px);
+  filter: blur(8px);
 }
 
 .brand-composition-box.step-0 .brand-number-wrapper {
-  transform: scale(2.8);
+  transform: translate(-50%, -50%) scale(2.8);
 }
 
 .brand-composition-box.step-0 .success-wrapper {
   opacity: 0;
-  transform: translateX(350px);
-  position: absolute;
-  pointer-events: none;
+  transform: translate(-50%, -50%) translateX(400px);
+  filter: blur(8px);
 }
 
-/* STEP 1: Study slides in from left, pushes 2 right */
-.brand-composition-box.step-1 {
-  transform: translateX(110px); /* Push the whole group right */
-}
-
+/* STEP 1: Study slides in with speed trail, knocks 2 to extreme right */
 .brand-composition-box.step-1 .study-wrapper {
   opacity: 1;
-  transform: translateX(0);
-  margin-right: 18px;
+  transform: translate(-50%, -50%) translateX(0px);
+  filter: blur(0px);
+  /* High speed drop shadow trail */
+  text-shadow: -15px 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .brand-composition-box.step-1 .brand-number-wrapper {
-  transform: scale(1.3);
+  /* Knocked to the extreme right edge! High speed rotation */
+  transform: translate(-50%, -50%) translateX(calc(43vw - 40px)) rotate(720deg) scale(1.4);
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* High velocity slide */
 }
 
 .brand-composition-box.step-1 .success-wrapper {
   opacity: 0;
-  transform: translateX(350px);
-  position: absolute;
-  pointer-events: none;
+  transform: translate(-50%, -50%) translateX(400px);
+  filter: blur(8px);
 }
 
 /* STEP 2: Success hits, pushes all back to center */
-.brand-composition-box.step-2 {
-  transform: translateX(0); /* Return group to center */
-}
-
 .brand-composition-box.step-2 .study-wrapper {
   opacity: 1;
-  transform: translateX(0);
-  margin-right: 20px;
+  transform: translate(-50%, -50%) translateX(0px);
+  filter: blur(0px);
 }
 
 .brand-composition-box.step-2 .brand-number-wrapper {
-  transform: scale(1.1);
+  /* Aligns centered in slot. Complete spin */
+  transform: translate(-50%, -50%) scale(1.1) rotate(1080deg);
 }
 
 .brand-composition-box.step-2 .success-wrapper {
   opacity: 1;
-  transform: translateX(0);
-  margin-left: 20px;
+  transform: translate(-50%, -50%) translateX(0px);
+  filter: blur(0px);
+  /* Speed trail from right */
+  text-shadow: 15px 0 10px rgba(255, 255, 255, 0.3);
 }
 
 /* Fonts and Gradients */
@@ -210,6 +237,7 @@
   letter-spacing: -0.03em;
   color: #f8fafc;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
 }
 
 .text-left-side, .text-right-side {
@@ -235,7 +263,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .intro-tagline {
@@ -253,10 +281,10 @@
 
 @keyframes impactShake {
   0% { transform: translate(0, 0); }
-  10% { transform: translate(-7px, 3px) rotate(-0.5deg); }
-  20% { transform: translate(5px, -3px) rotate(0.5deg); }
-  30% { transform: translate(-4px, 2px) rotate(0deg); }
-  40% { transform: translate(3px, -1.5px) rotate(-0.3deg); }
+  10% { transform: translate(-8px, 4px) rotate(-1deg); }
+  20% { transform: translate(6px, -4px) rotate(1deg); }
+  30% { transform: translate(-5px, 2px) rotate(0deg); }
+  40% { transform: translate(4px, -2px) rotate(-0.5deg); }
   60% { transform: translate(-2px, 1px) rotate(0deg); }
   80% { transform: translate(1px, -0.5px) rotate(0deg); }
   100% { transform: translate(0, 0); }
@@ -295,16 +323,18 @@
     font-size: 3.2rem;
   }
   
-  .brand-composition-box.step-1 {
-    transform: translateX(50px); /* Smaller shift on mobile */
+  /* Reset slots for mobile */
+  .study-wrapper {
+    left: calc(50% - 90px);
   }
 
-  .brand-composition-box.step-2 .study-wrapper {
-    margin-right: 10px;
+  .success-wrapper {
+    left: calc(50% + 95px);
   }
   
-  .brand-composition-box.step-2 .success-wrapper {
-    margin-left: 10px;
+  .brand-composition-box.step-1 .brand-number-wrapper {
+    /* Slightly less translation on smaller viewports */
+    transform: translate(-50%, -50%) translateX(calc(40vw - 20px)) rotate(720deg) scale(1.3);
   }
 
   .intro-tagline {
