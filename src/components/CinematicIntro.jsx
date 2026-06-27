@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass } from 'lucide-react';
+import { Compass, Play } from 'lucide-react';
 import './CinematicIntro.css';
 
 // Sound Synthesis via HTML5 Web Audio API
-const playSynthSound = (type) => {
+const playSynthSound = (ctx, type) => {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (!ctx) return;
     
+    // Resume context if suspended
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
     if (type === 'bass-drop') {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -33,7 +38,6 @@ const playSynthSound = (type) => {
     } 
     
     else if (type === 'impact-thud') {
-      // Heavy mechanical thud
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
@@ -49,7 +53,7 @@ const playSynthSound = (type) => {
       osc.start();
       osc.stop(ctx.currentTime + 0.6);
 
-      // Noise burst for mechanical collision friction
+      // Noise click
       const bufferSize = ctx.sampleRate * 0.12;
       const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
       const data = buffer.getChannelData(0);
@@ -76,18 +80,17 @@ const playSynthSound = (type) => {
     } 
     
     else if (type === 'energy-lock') {
-      // Harmonic lock chime
       const osc1 = ctx.createOscillator();
       const osc2 = ctx.createOscillator();
       const gain = ctx.createGain();
       
       osc1.type = 'triangle';
-      osc1.frequency.setValueAtTime(329.63, ctx.currentTime); // E4
-      osc1.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 1.0); // G5
+      osc1.frequency.setValueAtTime(329.63, ctx.currentTime); 
+      osc1.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 1.0); 
       
       osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-      osc2.frequency.exponentialRampToValueAtTime(1046.50, ctx.currentTime + 1.0); // C6
+      osc2.frequency.setValueAtTime(523.25, ctx.currentTime); 
+      osc2.frequency.exponentialRampToValueAtTime(1046.50, ctx.currentTime + 1.0); 
       
       osc1.connect(gain);
       osc2.connect(gain);
@@ -102,18 +105,17 @@ const playSynthSound = (type) => {
       osc2.stop(ctx.currentTime + 1.0);
     }
   } catch (e) {
-    console.warn("Audio blocked by browser config: ", e.message);
+    console.warn("Audio Context trigger failed: ", e.message);
   }
 };
 
 export default function CinematicIntro({ onComplete }) {
-  // Steps:
-  // 0: Giant "2" in middle
-  // 1: Study charges in, knocks 2 to extreme right (with screen shake + shockwave)
-  // 2: Success charges from right, hits 2, pushes all back to center (chime, screen shake, large shockwave)
+  const [hasInteracted, setHasInteracted] = useState(false); // Controls user click approval
   const [step, setStep] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
-  const [shockwaves, setShockwaves] = useState([]); // Array of active shockwaves
+  const [shockwaves, setShockwaves] = useState([]);
+  
+  const audioCtxRef = useRef(null); // Local reference to Web Audio Context
 
   // Trigger shockwave rings
   const triggerShockwave = (type) => {
@@ -124,25 +126,37 @@ export default function CinematicIntro({ onComplete }) {
     }, 600);
   };
 
-  useEffect(() => {
-    // 0.0s - Play sub-bass drop
-    playSynthSound('bass-drop');
+  // Launch Cinematic Experience on user click
+  const handleStartExperience = () => {
+    // Create audio context (browser registers user click gesture!)
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioContextClass();
+    audioCtxRef.current = ctx;
+    
+    setHasInteracted(true);
+    playSynthSound(ctx, 'bass-drop'); // Bass drop plays immediately!
+  };
 
-    // 1.2s - Study hits 2 (pushes it to full right)
+  useEffect(() => {
+    if (!hasInteracted) return;
+
+    const ctx = audioCtxRef.current;
+
+    // 1.2s - Study hits 2
     const t1 = setTimeout(() => {
       setStep(1);
       setIsShaking(true);
       triggerShockwave('shockwave-1');
-      playSynthSound('impact-thud');
+      playSynthSound(ctx, 'impact-thud');
       setTimeout(() => setIsShaking(false), 300);
     }, 1200);
 
-    // 2.4s - Success hits group (pushes back to center)
+    // 2.4s - Success hits group
     const t2 = setTimeout(() => {
       setStep(2);
       setIsShaking(true);
       triggerShockwave('shockwave-2');
-      playSynthSound('energy-lock');
+      playSynthSound(ctx, 'energy-lock');
       setTimeout(() => setIsShaking(false), 350);
     }, 2400);
 
@@ -156,7 +170,7 @@ export default function CinematicIntro({ onComplete }) {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [onComplete]);
+  }, [hasInteracted, onComplete]);
 
   return (
     <motion.div 
@@ -177,59 +191,91 @@ export default function CinematicIntro({ onComplete }) {
         <div className="space-grid"></div>
       </div>
 
-      {/* Radial backlight glow */}
-      <div className={`intro-backlight ${step >= 2 ? 'backlight-active' : ''}`} />
-
-      {/* Dynamic shockwave elements */}
-      {shockwaves.map(sw => (
-        <div key={sw.id} className={`shockwave ${sw.type}`} />
-      ))}
-
-      <div className="intro-content-container">
-        {/* Animated Compass Icon above */}
-        <motion.div
-          className="intro-icon-wrapper"
-          initial={{ opacity: 0, y: -80, scale: 0.5 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-        >
-          <Compass className="intro-compass-icon" />
-        </motion.div>
-
-        {/* The Brand Composition Container */}
-        <div className={`brand-composition-box step-${step}`}>
-          
-          {/* STUDY: Entering from left */}
-          <div className="brand-text-wrapper study-wrapper">
-            <span className="brand-text text-left-side">Study</span>
-          </div>
-
-          {/* NUMBER 2: Center core element */}
-          <div className="brand-number-wrapper">
-            <span className="brand-number">2</span>
-          </div>
-
-          {/* SUCCESS: Entering from right */}
-          <div className="brand-text-wrapper success-wrapper">
-            <span className="brand-text text-right-side">Success</span>
-          </div>
-
-        </div>
-
-        {/* Cinematic Tagline */}
-        <div className="intro-tagline-wrapper">
-          {step >= 2 && (
-            <motion.p
-              className="intro-tagline"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 0.8, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+      <AnimatePresence mode="wait">
+        {!hasInteracted ? (
+          /* Landing screen to capture browser gesture consent */
+          <motion.div 
+            key="start-screen"
+            className="intro-start-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+          >
+            <Compass className="start-pulse-icon" />
+            <h1 className="start-portal-title">Study2Success</h1>
+            <p className="start-portal-tag">Career Guidance Portal</p>
+            
+            <button 
+              type="button" 
+              className="enter-portal-btn"
+              onClick={handleStartExperience}
             >
-              Navigate Your Future Path
-            </motion.p>
-          )}
-        </div>
-      </div>
+              <Play size={18} fill="currentColor" />
+              <span>Enter Portal</span>
+            </button>
+            <span className="audio-notice-lbl">Optimized with cinematic sound effects</span>
+          </motion.div>
+        ) : (
+          /* Cinematic Animation sequence */
+          <motion.div 
+            key="cinematic-seq"
+            className="intro-animation-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Radial backlight glow */}
+            <div className={`intro-backlight ${step >= 2 ? 'backlight-active' : ''}`} />
+
+            {/* Dynamic shockwave elements */}
+            {shockwaves.map(sw => (
+              <div key={sw.id} className={`shockwave ${sw.type}`} />
+            ))}
+
+            <div className="intro-content-container">
+              {/* Animated Compass Icon above */}
+              <div className="intro-icon-wrapper">
+                <Compass className="intro-compass-icon" />
+              </div>
+
+              {/* The Brand Composition Container */}
+              <div className={`brand-composition-box step-${step}`}>
+                
+                {/* STUDY: Entering from left */}
+                <div className="brand-text-wrapper study-wrapper">
+                  <span className="brand-text text-left-side">Study</span>
+                </div>
+
+                {/* NUMBER 2: Center core element */}
+                <div className="brand-number-wrapper">
+                  <span className="brand-number">2</span>
+                </div>
+
+                {/* SUCCESS: Entering from right */}
+                <div className="brand-text-wrapper success-wrapper">
+                  <span className="brand-text text-right-side">Success</span>
+                </div>
+
+              </div>
+
+              {/* Cinematic Tagline */}
+              <div className="intro-tagline-wrapper">
+                {step >= 2 && (
+                  <motion.p
+                    className="intro-tagline"
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 0.8, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    Navigate Your Future Path
+                  </motion.p>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Skip Intro */}
       <motion.button
