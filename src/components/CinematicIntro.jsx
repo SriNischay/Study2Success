@@ -20,17 +20,19 @@ const playSynthSound = (ctx, type) => {
       gain.connect(ctx.destination);
       
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(90, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(20, ctx.currentTime + 1.6);
+      // Shift start/end frequencies upward so phone speakers can project them (above 100Hz cutoff)
+      osc.frequency.setValueAtTime(220, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(55, ctx.currentTime + 1.6);
       
+      // Raise lowpass filter limit so the sawtooth harmonics pass through clearly
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.value = 160;
+      filter.frequency.value = 350;
       osc.disconnect(gain);
       osc.connect(filter);
       filter.connect(gain);
 
-      gain.gain.setValueAtTime(0.5, ctx.currentTime);
+      gain.gain.setValueAtTime(0.85, ctx.currentTime); // Louder amplitude
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.6);
       
       osc.start();
@@ -41,20 +43,21 @@ const playSynthSound = (ctx, type) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(160, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.6);
+      // Raise pitch so impact thud resonates on smaller speakers
+      osc.frequency.setValueAtTime(320, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.6);
       
       osc.connect(gain);
       gain.connect(ctx.destination);
       
-      gain.gain.setValueAtTime(0.6, ctx.currentTime);
+      gain.gain.setValueAtTime(0.9, ctx.currentTime); // Substantially louder impact
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
       
       osc.start();
       osc.stop(ctx.currentTime + 0.6);
 
-      // Noise click
-      const bufferSize = ctx.sampleRate * 0.12;
+      // Noise click - shift pitch range into highly sensitive 1.2kHz area
+      const bufferSize = ctx.sampleRate * 0.15;
       const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
       const data = buffer.getChannelData(0);
       for (let i = 0; i < bufferSize; i++) {
@@ -66,15 +69,15 @@ const playSynthSound = (ctx, type) => {
       
       const filter = ctx.createBiquadFilter();
       filter.type = 'bandpass';
-      filter.frequency.value = 500;
+      filter.frequency.value = 1200; // Peak human hearing range
       
       const noiseGain = ctx.createGain();
       noise.connect(filter);
       filter.connect(noiseGain);
       noiseGain.connect(ctx.destination);
       
-      noiseGain.gain.setValueAtTime(0.4, ctx.currentTime);
-      noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      noiseGain.gain.setValueAtTime(0.7, ctx.currentTime); // Louder noise click
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
       
       noise.start();
     } 
@@ -85,18 +88,20 @@ const playSynthSound = (ctx, type) => {
       const gain = ctx.createGain();
       
       osc1.type = 'triangle';
-      osc1.frequency.setValueAtTime(329.63, ctx.currentTime); 
-      osc1.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 1.0); 
+      // Transpose up to a crisp treble register (E5 to E6)
+      osc1.frequency.setValueAtTime(659.25, ctx.currentTime); 
+      osc1.frequency.exponentialRampToValueAtTime(1318.51, ctx.currentTime + 1.0); 
       
       osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(523.25, ctx.currentTime); 
-      osc2.frequency.exponentialRampToValueAtTime(1046.50, ctx.currentTime + 1.0); 
+      // Transpose second voice up to (C6 to C7)
+      osc2.frequency.setValueAtTime(1046.50, ctx.currentTime); 
+      osc2.frequency.exponentialRampToValueAtTime(2093.00, ctx.currentTime + 1.0); 
       
       osc1.connect(gain);
       osc2.connect(gain);
       gain.connect(ctx.destination);
       
-      gain.gain.setValueAtTime(0.35, ctx.currentTime);
+      gain.gain.setValueAtTime(0.75, ctx.currentTime); // Substantially louder chime lock
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.0);
       
       osc1.start();
